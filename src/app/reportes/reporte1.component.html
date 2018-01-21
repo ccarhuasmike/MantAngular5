@@ -1,0 +1,108 @@
+
+<div class="container">
+    <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Serie</label>
+        <div class="col-4">
+          <input 
+          class="form-control" 
+          type="text"           
+          id="Serie"
+          name="Serie"
+          [(ngModel)]="filter.Serie">
+        </div>
+        <label for="example-search-input" class="col-2 col-form-label">Nro Doc</label>
+        <div class="col-4">
+          <input  class="form-control" 
+          type="text"           
+          id="Numerodoc"
+          name="Numerodoc"
+          [(ngModel)]="filter.Numerodoc">
+        </div>
+      </div>
+     
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">Fecha Inicio</label>
+        <div class="col-4">
+                <input type="text"
+                class="form-control" 
+                [bsConfig]="bsConfig" 
+                #dp="bsDatepicker"
+                bsDatepicker [(bsValue)]="bsValueIni"  
+                value="{{ bsValueIni | date:'dd/MM/yyyy' }}"   
+            
+                >
+        </div>
+        <label for="example-search-input" class="col-2 col-form-label">Fecha Fin</label>
+        <div class="col-4">
+                <input type="text"
+                class="form-control"
+                [bsConfig]="bsConfig" 
+                #dp="bsDatepicker"
+                bsDatepicker [(bsValue)]="bsValueFin"
+                value="{{ bsValueFin | date:'dd/MM/yyyy' }}"     
+                >
+        </div>
+      </div>
+      <div class="form-group row">
+            <button type="button" (click)="buscar()" class="btn btn-primary">Buscar</button>
+            <button type="button" (click)="exportToExcel()"  class="btn btn-primary">Exportar Excel</button>
+            <button type="button" (click)="exportToPdf()" class="btn btn-primary">Exportar PDF</button>
+    </div>
+      <div class="form-group row">     
+        <table class="table table-bordered table-responsive">
+            
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Serie</th>
+                  <th>Numerodoc</th>
+                  <th>Fecha Reg.</th>
+                  <th>Nombre</th>
+                  <th>Descripcion.</th>
+                  <th>Tipo Documento</th>
+                  <th>Precio Compra</th>
+                  <th>Fecha Proceso</th>
+
+                </tr>
+              </thead>
+                <div *ngIf="flagexistRegistro; then ocultarGrilla else mostrarGrilla"></div>
+            
+                </table>
+            
+            <ng-template #mostrarGrilla>                        
+                <tbody>
+                    <tr>
+                    <td colspan="9">No Existen Registro</td>
+                    </tr>
+                </tbody>   
+            </ng-template>
+            <ng-template #ocultarGrilla> 
+                    <tbody *ngFor="let result of listado" >
+                            <tr>
+                                <td>{{result.Id}}</td>
+                                <td>{{result.Serie}}</td>
+                                <td>{{result.Numerodoc}}</td>
+                                <td>{{result.Fecharegistro}}</td>
+                                <td>{{result.Nombre}}</td>
+                                <td>{{result.Descripcion}}</td>
+                                <td>{{result.Tipodocumento}}</td>
+                                <td>{{result.Precio_compra}}</td>
+                                <td>{{result.Fechaproceso}}</td>
+
+                            </tr>
+                        </tbody>
+                        <pagination 
+                        [boundaryLinks]="true" 
+                        [maxSize]="2" 
+                        [itemsPerPage]="itemsPerPage" 
+                        [totalItems]="totalItems" 
+                        [(ngModel)]="currentPage" 
+                        (pageChanged)="pageChanged($event)"
+                        class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="Primero" lastText="Ultimo" ></pagination>
+            
+            </ng-template>
+            
+      </div>
+      
+
+</div>
