@@ -19,6 +19,9 @@ import { ReporteService  } from "./service/reportes.services";
 import { DatePipe } from '@angular/common';
 import { ExcelService } from './service/ExcelService';
 import { PdfmakeService } from './service/pdfmake.service';
+import { AlertModule } from 'ngx-bootstrap/alert';
+// import { AlertComponent } from './Alert/alert.component';
+// import { AlertService } from './Alert/alert.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { PdfmakeService } from './service/pdfmake.service';
     Reporte1Component,
     Reporte2Component,
     HomeComponent,
+    //AlertComponent,
     PageNotFoundComponent
   ],
   imports: [
@@ -37,13 +41,15 @@ import { PdfmakeService } from './service/pdfmake.service';
     BrowserModule,
     AppRoutingModule,
     PaginationModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [ConfigService,
               ReporteService,
               DatePipe,
               ExcelService,
-              PdfmakeService
+              PdfmakeService,
+             // AlertService
             ],
   bootstrap: [AppComponent]
 })

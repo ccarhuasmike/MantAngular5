@@ -17,39 +17,12 @@ export class ReporteService {
         this._baseUrl =  configService.getWebApiURL();
     }
     getListPersona(reporte:IReporte,pagina:Pagination): Observable<PaginatedResult<IReporte[]>> {   
-        var peginatedResult: PaginatedResult<IReporte[]> = new PaginatedResult<IReporte[]>();
-       
-              
-        // let reportes = {
-        //         Serie: reporte.Serie,
-        //         Numerodoc: reporte.Numerodoc,
-        //         Fecha_Ini: reporte.Fecha_Ini,
-        //         Fecha_Fin: reporte.Fecha_Fin,
-        //     }
-        // let  paginacion = {
-        //         CurrentPage:pagina.,
-        //         ItemsPerPage:itemsPerPage,
-        //         TotalItems:0,
-        //         TotalPages:0
-        //     }
-
-        // var order = {
-        //     "CustomerName":"MS"
-        // };
-        // //2.
-        // var itemDetails = [
-        //     { "ItemName": "Desktop", "Quantity": 10, "UnitPrice": 45000 },
-        //     { "ItemName": "Laptop", "Quantity": 30, "UnitPrice": 80000 },
-        //     { "ItemName": "Router", "Quantity": 50, "UnitPrice": 5000 }
-        // ];
-
-        //let objectttt=
-
-        
+        var peginatedResult: PaginatedResult<IReporte[]> = new PaginatedResult<IReporte[]>();        
         debugger;      
         let myHeaders = new Headers();
        // myHeaders.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         myHeaders.append("Content-Type", 'application/json');        
+        //myHeaders.append("Access-Control-Allow-Origin", 'http://localhost:4200');        
         let options = new RequestOptions({ headers: myHeaders });
         return this.http.post(this._baseUrl + 'listarReporte',JSON.stringify({  reportes: reporte,      paginacion: pagina }),options)
         .map(res => {

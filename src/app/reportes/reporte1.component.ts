@@ -14,6 +14,7 @@ import { esLocale } from 'ngx-bootstrap/locale';
 import { debug } from "util";
 defineLocale('es', esLocale); 
 
+//import { AlertService } from '../Alert/alert.service';
 @Component({
     selector: 'app-reporte1',
     templateUrl: './reporte1.component.html'   
@@ -37,7 +38,8 @@ public bsConfig: Partial<BsDatepickerConfig>;
     constructor( private personaService: ReporteService,
                  private datePipe: DatePipe,
                  private excelService: ExcelService,
-                 private pdfmake : PdfmakeService
+                 private pdfmake : PdfmakeService,
+                // private alertService: AlertService
                 ){
      
                     this.excelService = excelService;
@@ -67,6 +69,8 @@ public bsConfig: Partial<BsDatepickerConfig>;
 
 
     exportToPdf(event){
+        this.pdfmake = new PdfmakeService();
+       // this.alertService.success("Hola segundo Mike");
         this.pdfmake.configureStyles({ header: { fontSize: 18, bold: true } });
         // this.pdfmake.addText('This is a header, using header style', 'header');
         // this.pdfmake.addText('This is an sample PDF printed with pdfMake');
@@ -139,6 +143,7 @@ public bsConfig: Partial<BsDatepickerConfig>;
     
           
         this.pdfmake.download('reporte1');
+      
     }
     
     exportToExcel (event){

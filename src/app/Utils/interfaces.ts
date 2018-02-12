@@ -22,8 +22,6 @@ export interface Pagination {
     TotalItems : number;
     TotalPages: number;
 }
-
-
 export class PaginatedResult<T> {
     result :  T;
     pagination : Pagination;

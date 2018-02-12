@@ -67,6 +67,7 @@ export class Reporte2Component{
     
     
         exportToPdf(event){
+            this.pdfmake = new PdfmakeService();
             this.pdfmake.configureStyles({ header: { fontSize: 18, bold: true } });
             // this.pdfmake.addText('This is a header, using header style', 'header');
             // this.pdfmake.addText('This is an sample PDF printed with pdfMake');

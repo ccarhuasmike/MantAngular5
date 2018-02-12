@@ -25,6 +25,10 @@ export class PdfmakeService {
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.createPdf(this.docDefinition).open();
   }
+  clear() {
+    this.docDefinition.content.clear();
+  }
+
   print() {    
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.createPdf(this.docDefinition).print();
